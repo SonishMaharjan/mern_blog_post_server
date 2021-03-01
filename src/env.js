@@ -1,7 +1,5 @@
-import "./env.js"
-import "./db.js"
 
-import dotenv from "dotenv";
+const dotenv = require("dotenv");
 
 /**
  * Initialize environment variables

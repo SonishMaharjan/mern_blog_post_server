@@ -1,7 +1,7 @@
-import "./env.js";
-import './db.js'
+const env = require("./env");
+const db = require('./db')
 
-import express from 'express'
+const express = require("express")
 
 const app = express()
 

@@ -1,10 +1,4 @@
-import dotenv from "dotenv"
-import { dirname } from 'path'
-import { fileURLToPath } from "url"
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
-
-dotenv.config({path: __dirname+'/../.env'})
+require('dotenv').config({ path: __dirname + '/../.env' });
 
 // Update with your config settings.
 
@@ -19,7 +13,7 @@ let connection = {
 }
 
 
-export default{
+module.exports = {
 
   development: {
     client: process.env.DB_CLIENT,
