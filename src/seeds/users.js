@@ -5,30 +5,33 @@
  * @returns {Promise}
  */
 function seed(knex) {
-  return knex('users')
+  return knex("users")
     .del()
     .then(() => {
-      return knex('users').insert([
+      return knex("users").insert([
         {
-          email: 'sonish@email.com',
-          first_name: 'Sonish', 
-          last_name: 'Maharjan',
-          password: "mypassword"
+          id: 1,
+          email: "sonish@email.com",
+          first_name: "Sonish",
+          last_name: "Maharjan",
+          password: "mypassword",
         },
         {
-          email: 'user@email.com',
-          first_name: 'User', 
-          last_name: 'Second',
-          password: "mypassword"
+          id: 2,
+          email: "user@email.com",
+          first_name: "User",
+          last_name: "Second",
+          password: "mypassword",
         },
         {
-          email: 'admin@email.com',
-          first_name: 'Admin', 
-          last_name: 'User',
-          password: "mypassword"
+          id: 3,
+          email: "admin@email.com",
+          first_name: "Admin",
+          last_name: "User",
+          password: "mypassword",
         },
       ]);
     });
 }
 
-module.exports = {seed}
+module.exports = { seed };
