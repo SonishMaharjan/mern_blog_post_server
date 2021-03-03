@@ -3,7 +3,7 @@ const httpStatus = require("http-status-codes");
 
 function getAllPosts(req, res, next) {
   postService
-    .getAllPosts()
+    .getAllPosts(req.userId)
     .then((data) => {
       res.json({ data });
     })
@@ -35,8 +35,10 @@ function getUserPosts(req, res, next) {
 }
 
 function create(req, res, next) {
+  let post = { ...req.body, user_id: req.userId };
+  console.log(post);
   postService
-    .createPost(req.body)
+    .createPost(post)
     .then((data) => {
       res.status(httpStatus.StatusCodes.CREATED).json({ data });
     })

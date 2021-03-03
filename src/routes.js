@@ -1,5 +1,7 @@
 const { Router } = require("express");
 
+const { authenticate } = require("./middlewares/authMiddleware");
+
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const postRoutes = require("./routes/postRoutes");
@@ -7,7 +9,7 @@ const postRoutes = require("./routes/postRoutes");
 const router = Router();
 
 router.use("/auth", authRoutes);
-router.use("/users", userRoutes);
-router.use("/post", postRoutes);
+router.use("/users", authenticate, userRoutes);
+router.use("/post", authenticate, postRoutes);
 
 module.exports = router;
