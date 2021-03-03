@@ -1,3 +1,5 @@
+const httpStatus = require("http-status-codes");
+
 const { Model } = require("bookshelf");
 
 const userService = require("../services/userService");
@@ -11,12 +13,11 @@ function fetchAll(req, res, next) {
       });
     })
     .catch((err) => {
-      console.log(err);
+      next(err);
     });
 }
 
 function fetchById(req, res, next) {
-  // console.log(req.params.id)
   userService
     .getUser(req.params.id)
     .then((data) => {

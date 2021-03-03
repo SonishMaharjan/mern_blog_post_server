@@ -1,5 +1,9 @@
-const userModel = require("../models/userModel");
+const bcrypt = require("bcryptjs");
 const httpStatus = require("http-status-codes");
+const jwt = require("jsonwebtoken");
+
+const userModel = require("../models/userModel");
+const config = require("../config");
 
 function getAllUsers() {
   return userModel
@@ -42,10 +46,18 @@ function getUser(id) {
 }
 
 function createUser(user) {
+  let hashedPassword = bcrypt.hashSync(user.password);
+  user.password = hashedPassword;
+
   return new userModel(user)
     .save()
     .then((data) => {
-      return data;
+      let token = jwt.sign(
+        { id: data.id, email: data.get("email") },
+        config.secret
+      );
+      let authData = { token: token };
+      return { userData: data, authData };
     })
     .catch((err) => {
       let errMsg = {
