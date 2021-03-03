@@ -1,9 +1,9 @@
 const httpStatus = require("http-status-codes");
 const postModel = require("../models/postModel");
 
-function getAllPosts(userId) {
+function getAllPosts() {
   return postModel
-    .where({ deleted_at: null, user_id: userId })
+    .where({ deleted_at: null })
     .fetchAll()
     .then((posts) => {
       return posts;
@@ -37,10 +37,10 @@ function getPost(id) {
 }
 
 function getUserPosts(userId) {
+  console.log(userId);
   return postModel
     .where({ deleted_at: null, user_id: userId })
     .fetchAll((posts) => {
-      console.log("the post are ", posts);
       return posts;
     })
     .catch((err) => {

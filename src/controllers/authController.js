@@ -9,7 +9,6 @@ function login(req, res, next) {
       res.json(data);
     })
     .catch((err) => {
-      console.log(err);
       next(err);
     });
 }

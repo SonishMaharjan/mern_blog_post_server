@@ -8,8 +8,6 @@ const config = require("../config");
 const authenticate = function (req, res, next) {
   let token = req.headers["x-access-token"];
 
-  console.log(token);
-
   if (!token) {
     return res
       .status(httpStatus.StatusCodes.UNAUTHORIZED)
