@@ -33,7 +33,7 @@ function login(credentials) {
         { id: user.get("id"), email: user.get("email") },
         config.secret
       );
-      return { authData: { token } };
+      return { authData: { token }, userData: user };
     })
     .catch((err) => {
       let errMsg = {

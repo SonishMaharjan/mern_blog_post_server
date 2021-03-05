@@ -4,6 +4,7 @@ const postModel = require("../models/postModel");
 function getAllPosts() {
   return postModel
     .where({ deleted_at: null })
+    .orderBy("created_at", "DESC")
     .fetchAll()
     .then((posts) => {
       return posts;
@@ -40,6 +41,7 @@ function getUserPosts(userId) {
   console.log(userId);
   return postModel
     .where({ deleted_at: null, user_id: userId })
+    .orderBy("created_at", "DESC")
     .fetchAll((posts) => {
       return posts;
     })
